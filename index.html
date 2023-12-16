@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VideoSync</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <style>
+        .columns {
+            margin-top: 20px;
+        }
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+        #videoContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #controlContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #setTimerButton {
+            width: 100%;
+            margin-top: 10px;
+        }
+        #currentTime {
+            margin-bottom: 10px;
+        }
+        #videoPlayer::-webkit-media-controls {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column" id="controlContainer">
+                    <div>
+                        <div class="field">
+                            <label class="label">Выберите момент в видео (например, 2:30)</label>
+                            <div class="control">
+                                <input class="input" type="text" id="videoTime" placeholder="HH:MM:SS">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Укажите дату и время (например, 01.01.2024 00:00)</label>
+                            <div class="control">
+                                <input class="input" type="datetime-local" id="targetDateTime">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Выберите локальное видео</label>
+                            <div class="control">
+                                <input class="input" type="file" id="videoFile" accept="video/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="button is-link" id="setTimerButton">Установить Таймер</button>
+                    </div>
+                </div>
+                
+                <div class="column" id="videoContainer">
+                    <video id="videoPlayer" width="640">
+                        <source src="" type="video/mp4">
+                        Ваш браузер не поддерживает видео тег.
+                    </video>
+                    <button class="button is-primary" id="fullscreenButton">На полный экран</button>
+                </div>
+            </div>
+
+            <div id="currentTime" class="notification is-info has-text-centered has-text-weight-bold"></div>
+            <div id="countdownTimer" class="notification is-primary has-text-centered has-text-weight-bold"></div>
+            
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
