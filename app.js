@@ -7,6 +7,7 @@ function updateCurrentTime() {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
     currentTimeElement.innerHTML = now.toLocaleString('ru-RU', options);
 }
+
 setInterval(updateCurrentTime, 1000);
 
 // Валидация времени видео
@@ -101,8 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Полноэкранный режим
 document.getElementById('fullscreenButton').addEventListener('click', function() {
-    var videoPlayer = document.getElementById('videoPlayer');
+    let videoPlayer = document.getElementById('videoPlayer');
     if (videoPlayer.requestFullscreen) {
         videoPlayer.requestFullscreen();
     } else if (videoPlayer.mozRequestFullScreen) { /* Firefox */
@@ -114,9 +116,12 @@ document.getElementById('fullscreenButton').addEventListener('click', function()
     }
 });
 
-
+// Установка значения текущего времени Москвы
 const currentDateTime = new Date();
 const moscowTimeOffset = currentDateTime.getTimezoneOffset() + 360;
 const moscowDateTime = new Date(currentDateTime.getTime() + moscowTimeOffset * 60000);
 document.getElementById('targetDateTime').value = moscowDateTime.toISOString().slice(0, 16);
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('videoTime').value = '00:00:00';
+});
